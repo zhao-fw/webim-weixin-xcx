@@ -15,64 +15,70 @@ let config = {
 	/*
 	 * socket server
 	 */
-	// socketServer: "wss://im-api.easemob.com/ws/", //小程序2.0sdk线上环境 请使用2.0版本sdk
-	// socketServer: "wss://im-api-hsb.easemob.com/ws/", //小程序2.0sdk沙箱环境 请使用2.0版本sdk
-	// socketServer: 'wss://im-api-new-hsb.easemob.com/websocket', //小程序沙箱环境
-	socketServer: 'wss://im-api-wechat.easemob.com/websocket', //小程序线上环境
-	// socketServer: 'wss://hk-wx.easemob.com/websocket',
-	/*
+  socketServer: 'wss://im-api-wechat.easemob.com/websocket', //小程序线上环境
+  /* 这里注意，需要配置的域名，如果不发布的话，开发者工具里面打开不检查域名合法性即可 */
+
+  /*
 	 * Backend REST API URL
 	 */
 	// apiURL: (location.protocol === 'https:' ? 'https:' : 'http:') + '//a1.easemob.com',
 	apiURL: "https://a1.easemob.com", // 线上环境
-	// apiURL: "https://a1-hsb.easemob.com", // 沙箱环境
-	// apiURL: 'https://hk-test.easemob.com',
-	/*
+
+  /*
 	 * Application AppKey
 	 */
-	appkey: "1149220506084721#demo",
-	/*
+	appkey: "1149220506084721#demo",  // 修改为自己的appid
+
+  /*
 	 * Whether to use HTTPS      '1177161227178308#xcx'
 	 * @parameter {Boolean} true or false
 	 */
 	https: false,
-	/*
+
+  /*
 	 * isMultiLoginSessions
 	 * true: A visitor can sign in to multiple webpages and receive messages at all the webpages.
 	 * false: A visitor can sign in to only one webpage and receive messages at the webpage.
 	 */
 	isMultiLoginSessions: false,
-	/**
+
+  /**
 	 * Whether to use window.doQuery()
 	 * @parameter {Boolean} true or false
 	 */
 	isWindowSDK: false,
-	/**
+
+  /**
 	 * isSandBox=true:  xmppURL: 'im-api.sandbox.easemob.com',  apiURL: '//a1.sdb.easemob.com',
 	 * isSandBox=false: xmppURL: 'im-api.easemob.com',          apiURL: '//a1.easemob.com',
 	 * @parameter {Boolean} true or false
 	 */
 	isSandBox: false,
-	/**
+
+  /**
 	 * Whether to console.log in strophe.log()
 	 * @parameter {Boolean} true or false
 	 */
 	isDebug: true,
-	/**
+
+  /**
 	 * will auto connect the xmpp server autoReconnectNumMax times in background when client is offline.
 	 * won't auto connect if autoReconnectNumMax=0.
 	 */
-	autoReconnectNumMax: 5,
-	/**
+   autoReconnectNumMax: 5,
+
+   /**
 	 * the interval secons between each atuo reconnectting.
 	 * works only if autoReconnectMaxNum >= 2.
 	 */
 	autoReconnectInterval: 2,
-	/**
+
+  /**
 	 * webrtc supports WebKit and https only
 	 */
 	isWebRTC: false,
-	/*
+
+  /*
 	 * Set to auto sign-in
 	 */
 	isAutoLogin: true,

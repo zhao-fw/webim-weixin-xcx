@@ -8,7 +8,9 @@ Page({
 	onLoad: function(){
 		let app = getApp();
 		new app.ToastPannel.ToastPannel();
-	},
+  },
+  
+  // 同注册页面
 	bindUsername: function(e){
 		this.setData({
 			username: e.detail.value
@@ -38,7 +40,9 @@ Page({
 		this.setData({
 			nameFocus: ''
 		})
-	},
+  },
+  
+  // 注册函数
 	register: function(){
 		const that = this;
 		if(that.data.username == ""){
@@ -48,6 +52,7 @@ Page({
 			return this.toastFilled('请输入密码！')
 		}
 		else{
+      // 注册的信息
 			var options = {
 				apiUrl: WebIM.config.apiURL,
 				username: that.data.username.toLowerCase(),
@@ -56,14 +61,15 @@ Page({
 				appKey: WebIM.config.appkey,
 				success: function(res){
 					console.log('注册成功', res)	
-					that.toastSuccess('注册成功');
+					that.toastSuccess('注册成功');  // toast（吐司）：就是提示成功失败的小提示框
 					var data = {
 						apiUrl: WebIM.config.apiURL,
 						user: that.data.username.toLowerCase(),
 						pwd: that.data.password,
 						grant_type: "password",
 						appKey: WebIM.config.appkey
-					};
+          };
+          // 储存
 					wx.setStorage({
 						key: "myUsername",
 						data: that.data.username
@@ -73,6 +79,7 @@ Page({
 					});
 				},
 				error: function(res){
+          // 注册失败问题，注意别犯
 					console.log('注册失败', res)
 					if (res.statusCode == '400' && res.data.error == 'illegal_argument') {
 						if (res.data.error_description === 'USERNAME_TOO_LONG') {
@@ -90,7 +97,8 @@ Page({
                     }
 					
 				}
-			};
+      };
+      // 调用该函数
 			WebIM.conn.registerUser(options);
 		}
 	}

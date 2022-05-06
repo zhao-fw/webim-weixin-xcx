@@ -17,7 +17,6 @@ Page({
 	statechange(e) {
 	    console.log('live-player code:', e.detail.code)
 	},
-
 	error(e) {
 	    console.error('live-player error:', e.detail.errMsg)
 	},
@@ -52,17 +51,18 @@ Page({
 		}
 	},
 
+  // 绑定数据
 	bindUsername: function(e){
 		this.setData({
 			name: e.detail.value
 		});
 	},
-
 	bindPassword: function(e){
 		this.setData({
 			psd: e.detail.value
 		});
-	},
+  },
+  // 控制样式变化
 	onFocusPsd: function(){
 		this.setData({
 			psdFocus: 'psdFocus'
@@ -93,20 +93,14 @@ Page({
 		else if(!__test_account__ && this.data.psd == ""){
 			this.toastFilled('请输入密码！')
 			return;
-		}
+    }
+    // 配置缓存（键值对key => data）
 		wx.setStorage({
 			key: "myUsername",
 			data: __test_account__ || this.data.name.toLowerCase()
 		});
 
-		// 此处为测试用来切换沙箱环境，请忽略
-		// if(this.data.isSandBox){
-		// 	WebIM.config.apiURL = "https://a1-hsb.easemob.com"
-		// 	WebIM.conn.apiUrl = "https://a1-hsb.easemob.com"
-		// 	WebIM.conn.url = 'wss://im-api-new-hsb.easemob.com/websocket'
-		// 	wx.emedia.mgr.setHost("https://a1-hsb.easemob.com")
-		// }
-
+    // 连接IM服务器（到时候可以用openid注册）函数在app.js中实现
 		getApp().conn.open({
 			// apiUrl: WebIM.config.apiURL,
 			user: __test_account__ || this.data.name.toLowerCase(),

@@ -24,24 +24,7 @@ WebIM.isDebug = function(option){
 			var Minutes = d.getMinutes(); // 获取当前分钟数(0-59)
 			var Seconds = d.getSeconds(); // 获取当前秒数(0-59)
 			return (Hours < 10 ? "0" + Hours : Hours) + ":" + (Minutes < 10 ? "0" + Minutes : Minutes) + ":" + (Seconds < 10 ? "0" + Seconds : Seconds) + " ";
-		}
-
-
-		// if (value) {
-		// 	Strophe.Strophe.Connection.prototype.rawOutput = function(data){
-		// 		try{
-		// 			console.group("%csend # " + ts(), "color: blue; font-size: large");
-		// 			console.log("%c" + data, "color: blue");
-		// 			console.groupEnd();
-		// 		}
-		// 		catch(e){
-		// 			console.log(e);
-		// 		}
-		// 	};
-		// }else{
-		// 	Strophe.Strophe.Connection.prototype.rawOutput = function(){};
-		// }
-		
+		}		
 	}
 }
 
@@ -56,17 +39,6 @@ if(WebIM.config.autoSignIn){
 }
 
 
-// var stropheConn = new window.Strophe.Connection("ws://im-api.easemob.com/ws/", {
-//                 inactivity: 30,
-//                 maxRetries: 5,
-//                 pollingTime: 4500
-//             });
-//
-// stropheConn.connect(
-//   '$t$' + 'YWMtmbQEBKKIEeaGmMtXyg5n1wAAAVlkQvGO2WOJGlMCEJKM4VV9GCMnb_XLCXU',
-//   function() {
-//     console.log(arguments, 'ggogogo');
-//   }, stropheConn.wait, stropheConn.hold);
 WebIM.parseEmoji = function(msg){
 	if(typeof WebIM.Emoji === "undefined" || typeof WebIM.Emoji.map === "undefined"){
 		return msg;

@@ -1,18 +1,18 @@
 
-let WebIM = wx.WebIM = require("utils/WebIM")["default"];
-let msgStorage = require("comps/chat/msgstorage");
-let msgType = require("comps/chat/msgtype");
-let ToastPannel = require("./comps/toast/toast");
-let disp = require("utils/broadcast");
+let WebIM = wx.WebIM = require("utils/WebIM")["default"]; // 重头戏IM
+let msgStorage = require("comps/chat/msgstorage"); // 信息存储
+let msgType = require("comps/chat/msgtype"); // 信息格式
+let ToastPannel = require("./comps/toast/toast"); // 土司
+let disp = require("utils/broadcast");  // 广播？
 let logout = false;
 
-const AgoraMiniappSDK = require('./emedia/Agora_Miniapp_SDK_for_WeChat');
+const AgoraMiniappSDK = require('./emedia/Agora_Miniapp_SDK_for_WeChat'); // 声网（用户语音通信等媒体流的通信）
 // const AgoraMiniappSDK = require('./emedia/Agora');
 wx.AgoraMiniappSDK = AgoraMiniappSDK
 console.log('WebIM', WebIM)
 console.log('wx.AgoraMiniappSDK', wx.AgoraMiniappSDK)
 
-let emediaState = require('comps/chat/multiEmedia/emediaState')
+let emediaState = require('comps/chat/multiEmedia/emediaState') // 是不是邮箱？E-Media
 
 function ack(receiveMsg){
 	// 处理未读消息回执
@@ -44,25 +44,7 @@ function getCurrentRoute(){
 	return '/'
 }
 
-// 不包含陌生人版本
-// function calcUnReadSpot(message){
-// 	let myName = wx.getStorageSync("myUsername");
-// 	let members = wx.getStorageSync("member") || []; //好友
-// 	var listGroups = wx.getStorageSync('listGroup')|| []; //群组
-// 	let allMembers = members.concat(listGroups)
-// 	let count = allMembers.reduce(function(result, curMember, idx){
-// 		let chatMsgs;
-// 		if (curMember.groupid) {
-// 			chatMsgs = wx.getStorageSync(curMember.groupid + myName.toLowerCase()) || [];
-// 		}else{
-// 			chatMsgs = wx.getStorageSync(curMember.name.toLowerCase() + myName.toLowerCase()) || [];
-// 		}
-// 		return result + chatMsgs.length;
-// 	}, 0);
-// 	getApp().globalData.unReadMessageNum = count;
-// 	disp.fire("em.xmpp.unreadspot", message);
-// }
-// 包含陌生人版本
+// 包含陌生人版本（未读消息的点？）
 function calcUnReadSpot(message){
 	let myName = wx.getStorageSync("myUsername");
 	wx.getStorageInfo({
@@ -114,10 +96,11 @@ App({
 		channel: ''
 	},
 
+  // 连接IM服务器相关内容
 	conn: {
 		closed: false,
 		curOpenOpt: {},
-		open(opt){
+		open(opt){ // 打开
 			wx.showLoading({
 			  	title: '正在初始化客户端...',
 			  	mask: true
@@ -125,8 +108,8 @@ App({
 			this.curOpenOpt = opt;
 			WebIM.conn.open(opt);
 			this.closed = false;
-		},
-		reopen(){
+    },
+		reopen(){ // 重启
 			if(this.closed){
 				//this.open(this.curOpenOpt);
 				WebIM.conn.open(this.curOpenOpt);
@@ -135,12 +118,6 @@ App({
 		}
 	},
 
-	// getPage(pageName){
-	// 	var pages = getCurrentPages();
-	// 	return pages.find(function(page){
-	// 		return page.__route__ == pageName;
-	// 	});
-	// },
 
 	onLaunch(){
 		// 调用 API 从本地缓存中获取数据
@@ -596,7 +573,9 @@ App({
 				}
 			});
 		}
-	},
+  },
+
+  // 检查是不是iPhone
 	checkIsIPhoneX: function() {
 	    const me = this
 	    wx.getSystemInfo({

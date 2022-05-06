@@ -30,7 +30,6 @@
 
 	<view class="login_text">
 		<navigator url="../register/register" open-type="redirect" hover-class="navigator-hover">新用户注册</navigator>
-		<navigator url="../login_token/login_token" open-type="redirect" hover-class="navigator-hover">使用Token登录</navigator>
 	</view>
 	<template is="toast" data="{{ ..._toast_ }}"></template>
 </view>

@@ -1,78 +1,66 @@
-let WebIM = require("../../utils/WebIM")["default"];
-let __test_account__, __test_psword__;
-let disp = require("../../utils/broadcast");
-// __test_account__ = "easezy";
-// __test_psword__ = "111111";
-
+// pages/login_token/login_token.js
 Page({
-	data: {
-		name: "",
-		psd: "",
-		grant_type: "password"
-	},
 
-	onLoad: function(){
-		const me = this;
-		let app = getApp();
-		new app.ToastPannel.ToastPannel();
-		disp.on("em.xmpp.error.tokenErr", function(){
-			me.toastFilled('token错误、token过期或者未授权');
-		});
-	},
+  /**
+   * 页面的初始数据
+   */
+  data: {
 
-	bindUsername: function(e){
-		this.setData({
-			name: e.detail.value
-		});
-	},
+  },
 
-	bindPassword: function(e){
-		this.setData({
-			psd: e.detail.value
-		});
-	},
-	onFocusPsd: function(){
-		this.setData({
-			psdFocus: 'psdFocus'
-		})
-	},
-	onBlurPsd: function(){
-		this.setData({
-			psdFocus: ''
-		})
-	},
-	onFocusName: function(){
-		this.setData({
-			nameFocus: 'nameFocus'
-		})
-	},
-	onBlurName: function(){
-		this.setData({
-			nameFocus: ''
-		})
-	},
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
 
-	login: function(){
-		if(!__test_account__ && this.data.name == ""){
-			this.toastFilled('请输入用户名！')
-			return;
-		}
-		else if(!__test_account__ && this.data.psd == ""){
-			this.toastFilled('请输入token！')
-			return;
-		}
-		wx.setStorage({
-			key: "myUsername",
-			data: __test_account__ || this.data.name.toLowerCase()
-		});
+  },
 
-		getApp().conn.open({
-			apiUrl: WebIM.config.apiURL,
-			user: __test_account__ || this.data.name.toLowerCase(),
-			pwd: __test_psword__ || this.data.psd,
-			accessToken: __test_psword__ || this.data.psd,
-			//grant_type: this.data.grant_type,
-			appKey: WebIM.config.appkey
-		});
-	}
-});
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
+  }
+})
