@@ -30,7 +30,7 @@ let config = {
 	/*
 	 * Application AppKey
 	 */
-	appkey: "easemob-demo#easeim",
+	appkey: "1149220506084721#demo",
 	/*
 	 * Whether to use HTTPS      '1177161227178308#xcx'
 	 * @parameter {Boolean} true or false
