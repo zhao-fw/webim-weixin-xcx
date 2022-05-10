@@ -7,12 +7,11 @@ let disp = require("utils/broadcast");  // 广播？
 let logout = false;
 
 const AgoraMiniappSDK = require('./emedia/Agora_Miniapp_SDK_for_WeChat'); // 声网（用户语音通信等媒体流的通信）
-// const AgoraMiniappSDK = require('./emedia/Agora');
 wx.AgoraMiniappSDK = AgoraMiniappSDK
 console.log('WebIM', WebIM)
 console.log('wx.AgoraMiniappSDK', wx.AgoraMiniappSDK)
 
-let emediaState = require('comps/chat/multiEmedia/emediaState') // 是不是邮箱？E-Media
+let emediaState = require('comps/chat/multiEmedia/emediaState') // 会议？
 
 function ack(receiveMsg){
 	// 处理未读消息回执
@@ -87,7 +86,7 @@ function saveGroups(){
 
 App({
 	ToastPannel,
-	globalData: {
+	globalData: { // 到时候应该需要两份好友内容，一个是数据库中的openid，一个用户名
 		unReadMessageNum: 0,
 		userInfo: null,
 		saveFriendList: [],
@@ -546,13 +545,10 @@ App({
 	onLoginSuccess: function(myName){
 		wx.hideLoading()
 
+    // 登录成功跳转到聊天内容界面
 		wx.redirectTo({
 			url: "../chat/chat?myName=" + myName
 		});
-
-		// wx.redirectTo({
-		// 	url: "../emediaInvite/emediaInvite?myName=" + myName
-		// });
 	},
 
 	getUserInfo(cb){

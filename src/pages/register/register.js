@@ -10,7 +10,7 @@ Page({
 		new app.ToastPannel.ToastPannel();
   },
   
-  // 同注册页面
+  // 获取数据
 	bindUsername: function(e){
 		this.setData({
 			username: e.detail.value
@@ -21,26 +21,6 @@ Page({
 			password: e.detail.value
 		});
 	},
-	onFocusPsd: function(){
-		this.setData({
-			psdFocus: 'psdFocus'
-		})
-	},
-	onBlurPsd: function(){
-		this.setData({
-			psdFocus: ''
-		})
-	},
-	onFocusName: function(){
-		this.setData({
-			nameFocus: 'nameFocus'
-		})
-	},
-	onBlurName: function(){
-		this.setData({
-			nameFocus: ''
-		})
-  },
   
   // 注册函数
 	register: function(){

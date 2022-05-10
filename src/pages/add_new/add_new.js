@@ -60,7 +60,9 @@ Page({
 		WebIM.conn.subscribe({
 			to: me.data.friend_name
 		});
-
+    /* roster：翻译为名册，我想就是好友的意思吧
+       Subscription：翻译为订阅，在深入了解samck的机制之前，可以理解为添加好友，就是“订阅一个好友”，或者“订阅一个名册”，收到好友申请，可以理解为“收到一个订阅请求”
+     */
 		// 判断当前是否存在该好友
 		let rosters = {
 			success: function(roster){

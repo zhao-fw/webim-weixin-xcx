@@ -54,7 +54,7 @@
 				<!-- <image class='line' src="../../images/line.png"></image> -->
 				<!-- 0.5px border -->
 			</view>
-		<!-- 	<view class="chat" bindtap="into_inform">
+			<!-- <view class="chat" bindtap="into_inform">
 				<image src="../../images/chat.png"></image>
 				<text>申请与通知</text>
 				<text  class="em-msgNum">3</text>

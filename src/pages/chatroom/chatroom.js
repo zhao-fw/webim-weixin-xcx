@@ -7,7 +7,7 @@ Page({
 		},
 	},
 
-	// options = 系统传入的 url 参数
+	// options = 系统传入的 url 参数（me、you）（发送信息）
 	onLoad(options){
 		let me = this
 		let username = options && JSON.parse(options.username) || {};

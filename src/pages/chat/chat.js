@@ -114,7 +114,7 @@ Page({
 		});
 	},
 
-	getRoster(){
+	getRoster(){ // 名册
 		let me = this;
 		let rosters = {
 			success(roster){
@@ -264,6 +264,7 @@ Page({
 		}
 	},
 
+  // 搜索相关
 	openSearch: function(){
 		this.setData({
 			search_btn: false,
@@ -271,7 +272,6 @@ Page({
 			gotop: true
 		});
 	},
-
 	onSearch: function(val){
 		var myName = wx.getStorageSync("myUsername");
 		const me = this
@@ -288,7 +288,6 @@ Page({
 			arr: serchList,
 		})
 	},
-
 	cancel: function(){
 		this.getChatList()
 		this.setData({
@@ -299,14 +298,12 @@ Page({
 			gotop: false
 		});
 	},
-
 	clearInput: function(){
 		this.setData({
 			input_code: '',
 			show_clear: false
 		})
 	},
-
 	onInput: function(e){
 		let inputValue = e.detail.value
 		if (inputValue) {
@@ -320,12 +317,12 @@ Page({
 		}
 	},
 
+  // 底部的tab点击时
 	tab_contacts: function(){
 		wx.redirectTo({
 			url: "../main/main?myName=" + wx.getStorageSync("myUsername")
 		});
 	},
-
 	close_mask: function(){
 		this.setData({
 			search_btn: true,
@@ -333,19 +330,18 @@ Page({
 			show_mask: false
 		});
 	},
-
 	tab_setting: function(){
 		wx.redirectTo({
 			url: "../setting/setting"
 		});
 	},
-
 	tab_notification: function(){
 		wx.redirectTo({
 			url: "../notification/notification"
 		});
 	},
 
+  // 判断是单聊还是群聊，选择下列两个函数执行
 	into_chatRoom: function(event){
 		let detail = event.currentTarget.dataset.item;
 		//群聊的chatType居然是singlechat？脏数据？ 等sdk重写后整理一下字段
@@ -381,7 +377,7 @@ Page({
 		});
 	},
 
-
+  // 删除聊天记录
 	del_chat: function(event){
 		let detail = event.currentTarget.dataset.item;
 		let nameList;

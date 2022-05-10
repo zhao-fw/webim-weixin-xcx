@@ -1,13 +1,7 @@
 <import src="../../comps/toast/toast.wxml"/>
 <view class="login">
-	<!-- <live-player 
-				src='rtmp://39.107.156.84:31543/IM3UXH545KAUTED0K4P7800C21M48/rtc-7-sln__Of_IM3UXH545KAUTED0K4P7800C21M16'
-				mode="RTC" 
-				autoplay 
-				binderror="error" 
-			/> -->
 	<view class="login_title">
-		<text bindlongpress="longpress">登录</text>
+		<text>登录</text>
 	</view>
 
 	<!-- 测试用 请忽略 -->
@@ -19,10 +13,10 @@
 	</view>
 
 	<view class="login_user {{nameFocus}}">
-		<input type="text" placeholder="用户ID" placeholder-style="color:rgb(173,185,193)" bindinput="bindUsername" bindfocus="onFocusName" bindblur="onBlurName"/>
+		<input type="text" placeholder="用户ID" placeholder-style="color:rgb(173,185,193)" bindinput="bindUsername"/>
 	</view>
 	<view class="login_pwd {{psdFocus}}">
-		<input type="text" password placeholder="用户密码" placeholder-style="color:rgb(173,185,193)" bindinput="bindPassword" bindfocus="onFocusPsd" bindblur="onBlurPsd"/>
+		<input type="text" password placeholder="用户密码" placeholder-style="color:rgb(173,185,193)" bindinput="bindPassword"/>
 	</view>
 	<view class="login_btn">
 		<button hover-class="btn_hover" bind:tap="login">登录</button>

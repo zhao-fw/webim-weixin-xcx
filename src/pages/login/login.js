@@ -10,7 +10,7 @@ Page({
 		psd: "",
 		grant_type: "password",
 		rtcUrl: '',
-		show_config: false, //默认不显示配置按钮
+		show_config: true, //默认不显示配置按钮
 		isSandBox: false //默认线上环境
 	},
 
@@ -62,27 +62,6 @@ Page({
 			psd: e.detail.value
 		});
   },
-  // 控制样式变化
-	onFocusPsd: function(){
-		this.setData({
-			psdFocus: 'psdFocus'
-		})
-	},
-	onBlurPsd: function(){
-		this.setData({
-			psdFocus: ''
-		})
-	},
-	onFocusName: function(){
-		this.setData({
-			nameFocus: 'nameFocus'
-		})
-	},
-	onBlurName: function(){
-		this.setData({
-			nameFocus: ''
-		})
-	},
 
 	login: function(){
 		runAnimation = !runAnimation
@@ -108,13 +87,6 @@ Page({
 			grant_type: this.data.grant_type,
 			appKey: WebIM.config.appkey
 		});
-	},
-
-	longpress: function(){
-		console.log('长按')
-		this.setData({
-			show_config: !this.data.show_config
-		})
 	},
 
 	changeConfig: function(){

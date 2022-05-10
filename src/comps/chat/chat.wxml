@@ -1,3 +1,4 @@
+<!-- 聊天的主体 -->
 <view class="main" wx:if="{{!showEmedia&&!showmultiEmedia}}">
 	<chat-suit-audio
 		id="chat-suit-audio"
@@ -12,6 +13,8 @@
 		bind:clickMsg="onClickInviteMsg"
 		bind:msglistTap="normalScroll"></chat-msglist>
 </view>
+
+  <!-- 聊天框的一些功能 -->
 	<chat-inputbar
 		id="chat-inputbar"
 		username="{{ username }}"
