@@ -362,4 +362,17 @@ page{
 	overflow: hidden;
 }
 
+.tableBar1 {
+  height: 45%;
+  width: 8%;
+  display: inline-flex;
+  float: right;
+  padding-top: 4%;
+  padding-right: 5%;
+}
+
+.tableBar1 image {
+  height: 100%;
+  width: 100%;
+}
 

@@ -280,7 +280,7 @@ Page({
 	},
 
 	tab_chat: function(){
-		wx.redirectTo({
+		wx.navigateTo({
 			url: "../chat/chat"
 		});
 	},
@@ -300,7 +300,7 @@ Page({
 	},
 
 	tab_notification: function(){
-		wx.redirectTo({
+		wx.navigateTo({
 			url: "../notification/notification"
 		});
 	},
