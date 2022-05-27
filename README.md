@@ -2,6 +2,8 @@
 
 * 源仓库地址：[环信小程序demo](https://github.com/easemob/webim-weixin-xcx)
 
+* 由于在微信小程序开发过程中，需要用到IM服务器，故在此学习（只是用作学习，故将不需要的功能做了删除）
+
 * 代码文件在src中，直接用微信开发者工具打开该文件夹即可。
 
 * 使用前，先要注册环信账号，然后将appid修改（文件为src\utils\WebIMConfig.js）：
