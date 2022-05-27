@@ -56,32 +56,3 @@
 
 
 <view class="mask" bindtap="close_mask" wx:if="{{show_mask}}"></view>
-
-<!-- 可能时针对两种手机设置了两种样式吧，分情况展示tableBar -->
-<!-- 同时还有部分针对未读消息所作的样式的设计 -->
-<view class="{{isIPX?'chatRoom_tab_X':'chatRoom_tab'}}">
-  <view class="tableBar">
-    <view wx:if="{{ unReadSpotNum > 0 || unReadSpotNum == '99+'}}" class="em-unread-spot {{unReadSpotNum == '99+'?'em-unread-spot-litleFont':''}}">{{ unReadSpotNum }}</view>
-    <image class="{{unReadSpotNum > 0 || unReadSpotNum == '99+'? 'haveSpot': ''}}" src="../../images/sessionhighlight@2x.png"></image>
-    <text class="activeText">聊天</text>
-  </view>
-
-  <view class="tableBar" bindtap="tab_contacts">
-    <image src="../../images/comtacts@2x.png"></image>
-    <text>联系人</text>
-  </view>
-
-  <view class="tableBar" bindtap="tab_notification">
-    <view wx:if="{{ unReadTotalNotNum > 0 }}" class="em-unread-spot">
-      {{unReadTotalNotNum}}
-    </view>
-    <image class="{{unReadTotalNotNum > 0 ? 'haveSpot': ''}}" src="../../images/notice.png">
-    </image>
-    <text>通知</text>
-  </view>
-
-  <view class="tableBar" bindtap="tab_setting">
-    <image src="../../images/setting@2x.png"></image>
-    <text>设置</text>
-  </view>
-</view>

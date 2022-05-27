@@ -17,7 +17,8 @@
 			placeholder-style="color:#CFCFCF; padding-left:5px;"
 			 />
 
-		<!-- <button class="send_btn" bind:tap="sendMessage">发送</button> -->
+    <!-- 为什么要去掉这个按钮你？ -->
+		<button class="send_btn" bind:tap="sendMessage">发送</button>
 
 <!-- 	</view> -->
 </form>

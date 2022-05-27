@@ -83,9 +83,10 @@ Page({
 		this.getRoster();
 
     // 判断小程序的API，回调，参数，组件等是否在当前版本可用。
-		if (wx.canIUse('hideHomeButton')) {
-			wx.hideHomeButton()
-		}
+    // 这里是关闭了微信自带的返回home按钮
+		// if (wx.canIUse('hideHomeButton')) {
+		// 	wx.hideHomeButton()
+		// }
 	},
 
 	listGroups(){ // 列出组
@@ -318,26 +319,11 @@ Page({
 	},
 
   // 底部的tab点击时
-	tab_contacts: function(){
-		wx.redirectTo({
-			url: "../main/main?myName=" + wx.getStorageSync("myUsername")
-		});
-	},
 	close_mask: function(){
 		this.setData({
 			search_btn: true,
 			search_chats: false,
 			show_mask: false
-		});
-	},
-	tab_setting: function(){
-		wx.redirectTo({
-			url: "../setting/setting"
-		});
-	},
-	tab_notification: function(){
-		wx.redirectTo({
-			url: "../notification/notification"
 		});
 	},
 
