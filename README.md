@@ -14,7 +14,7 @@
   将聊天和通知等功能放在右上角的部分，即将所有的功能集合到一个界面中。
 
 # 各个界面功能注释
-```json
+```
   "pages": [
     "pages/login/login", //登录界面
     "pages/login_token/login_token", // 通过token登录的界面
