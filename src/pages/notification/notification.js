@@ -64,20 +64,4 @@ Page({
 			url: "../notification_groupDetail/groupDetail?myName=" + wx.getStorageSync("myUsername")
 		});
 	},
-
-	tab_contact: function(){
-		wx.redirectTo({
-			url: "../main/main?myName=" + wx.getStorageSync("myUsername")
-		});
-	},
-	tab_chat: function(){
-		wx.redirectTo({
-			url: "../chat/chat"
-		});
-	},
-	tab_setting: function(){
-		wx.redirectTo({
-			url: "../setting/setting"
-		});
-	},
 })

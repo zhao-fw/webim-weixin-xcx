@@ -103,7 +103,7 @@ Page({
     }
     
     /* 组建群聊关键内容，其他为辅助内容（判断是否可以等等） */
-    options中有添加群聊需要的选项以及成功和失败的回调函数
+    // options中有添加群聊需要的选项以及成功和失败的回调函数
 		let options = {
 			data: {
 				groupname: this.data.groupName,
