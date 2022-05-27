@@ -5,14 +5,11 @@ let msgType = require("comps/chat/msgtype"); // 信息格式
 let ToastPannel = require("./comps/toast/toast"); // 土司
 let disp = require("utils/broadcast");  // 广播？
 let logout = false;
-
 const AgoraMiniappSDK = require('./emedia/Agora_Miniapp_SDK_for_WeChat'); // 声网（用户语音通信等媒体流的通信）
 wx.AgoraMiniappSDK = AgoraMiniappSDK
 console.log('WebIM', WebIM)
 console.log('wx.AgoraMiniappSDK', wx.AgoraMiniappSDK)
-
 let emediaState = require('comps/chat/multiEmedia/emediaState') // 会议？
-
 function ack(receiveMsg){
 	// 处理未读消息回执
 	var bodyId = receiveMsg.id;         // 需要发送已读回执的消息id
@@ -23,7 +20,6 @@ function ack(receiveMsg){
 	});
 	WebIM.conn.send(ackMsg.body);
 }
-
 function onMessageError(err){
 	if(err.type === "error"){
 		wx.showToast({
@@ -33,7 +29,6 @@ function onMessageError(err){
 	}
 	return true;
 }
-
 function getCurrentRoute(){
 	let pages = getCurrentPages();
 	if (pages.length > 0) {
@@ -42,7 +37,6 @@ function getCurrentRoute(){
 	}
 	return '/'
 }
-
 // 包含陌生人版本（未读消息的点？）
 function calcUnReadSpot(message){
 	let myName = wx.getStorageSync("myUsername");
@@ -67,7 +61,6 @@ function calcUnReadSpot(message){
 		}
 	})
 }
-
 function saveGroups(){
 	var me = this;
 	return WebIM.conn.getGroup({
@@ -110,7 +103,6 @@ App({
     },
 		reopen(){ // 重启
 			if(this.closed){
-				//this.open(this.curOpenOpt);
 				WebIM.conn.open(this.curOpenOpt);
 				this.closed = false;
 			}
@@ -125,7 +117,6 @@ App({
 		var logs = wx.getStorageSync("logs") || [];
 		logs.unshift(Date.now());
 		wx.setStorageSync("logs", logs);
-
 		// 
 		disp.on("em.main.ready", function(){
 			calcUnReadSpot();
@@ -146,13 +137,7 @@ App({
 		disp.on('em.chat.audio.fileLoaded', function(){
 			calcUnReadSpot()
 		});
-
-		// 音视频邀请
-		disp.on('emedia.confirmRing', function(){
-			
-		});
 		
-		// 
 		WebIM.conn.listen({
 			onOpened(message){
 				console.log('im登录成功')
@@ -191,15 +176,6 @@ App({
 			onInviteMessage(message){
 				me.globalData.saveGroupInvitedList.push(message);
 				disp.fire("em.xmpp.invite.joingroup", message);
-				// wx.showModal({
-				// 	title: message.from + " 已邀你入群 " + message.roomid,
-				// 	success(){
-				// 		disp.fire("em.xmpp.invite.joingroup", message);
-				// 	},
-				// 	error(){
-				// 		disp.fire("em.xmpp.invite.joingroup", message);
-				// 	}
-				// });
 			},
 			onReadMessage(message){
 				//console.log('已读', message)
@@ -288,17 +264,6 @@ App({
 					  }
 					})
 					break;
-				// 好友列表
-				// case "subscribed":
-				// 	let newFriendList = [];
-				// 	for(let i = 0; i < me.globalData.saveFriendList.length; i++){
-				// 		if(me.globalData.saveFriendList[i].from != message.from){
-				// 			newFriendList.push(me.globalData.saveFriendList[i]);
-				// 		}
-				// 	}
-				// 	me.globalData.saveFriendList = newFriendList;
-				// 	break;
-				// 删除好友
 				case "unavailable":
 					disp.fire("em.xmpp.contacts.remove");
 					disp.fire("em.xmpp.group.leaveGroup", message);
@@ -315,22 +280,6 @@ App({
 				case "removedFromGroup": 
 					disp.fire("em.xmpp.group.leaveGroup", message);
 					break;
-				// case "joinChatRoomSuccess":
-				// 	wx.showToast({
-				// 		title: "JoinChatRoomSuccess",
-				// 	});
-				// 	break;
-				// case "memberJoinChatRoomSuccess":
-				// 	wx.showToast({
-				// 		title: "memberJoinChatRoomSuccess",
-				// 	});
-				// 	break;
-				// case "memberLeaveChatRoomSuccess":
-				// 	wx.showToast({
-				// 		title: "leaveChatRoomSuccess",
-				// 	});
-				// 	break;
-
 				default:
 					break;
 				}
@@ -341,26 +290,6 @@ App({
 				// if(pages[0]){
 				// 	pages[0].onShow();
 				// }
-			},
-
-			onVideoMessage(message){
-				console.log("onVideoMessage: ", message);
-				if(message){
-					msgStorage.saveReceiveMsg(message, msgType.VIDEO);
-				}
-				calcUnReadSpot(message);
-				ack(message);
-			},
-
-			onAudioMessage(message){
-				console.log("onAudioMessage", message);
-				if(message){
-					if(onMessageError(message)){
-						msgStorage.saveReceiveMsg(message, msgType.AUDIO);
-					}
-					calcUnReadSpot(message);
-					ack(message);
-				}
 			},
 			
 			onCmdMessage(message){
@@ -375,13 +304,6 @@ App({
 					ack(message);
 				}
 			},
-
-			// onLocationMessage(message){
-			// 	console.log("Location message: ", message);
-			// 	if(message){
-			// 		msgStorage.saveReceiveMsg(message, msgType.LOCATION);
-			// 	}
-			// },
 
 			onTextMessage(message){
 				console.log("onTextMessage", message);
@@ -412,28 +334,6 @@ App({
 				if(message){
 					if(onMessageError(message)){
 						msgStorage.saveReceiveMsg(message, msgType.EMOJI);
-					}
-					calcUnReadSpot(message);
-					ack(message);
-				}
-			},
-
-			onPictureMessage(message){
-				console.log("onPictureMessage", message);
-				if(message){
-					if(onMessageError(message)){
-						msgStorage.saveReceiveMsg(message, msgType.IMAGE);
-					}
-					calcUnReadSpot(message);
-					ack(message);
-				}
-			},
-
-			onFileMessage(message){
-				console.log('onFileMessage', message);
-				if (message) {
-					if(onMessageError(message)){
-						msgStorage.saveReceiveMsg(message, msgType.FILE);
 					}
 					calcUnReadSpot(message);
 					ack(message);
@@ -521,33 +421,19 @@ App({
 		if (WebIM.conn.isOpened() && currentPage.route != "pages/chatroom/chatroom" && currentPage.route != "pages/groupChatRoom/groupChatRoom") {
 			let myName = wx.getStorageSync("myUsername");
 			wx.redirectTo({
-				url: "../chat/chat?myName=" + myName
+				url: "../main/main?myName=" + myName
 			});
 		}
 
 		wx.hideHomeButton()
 	},
 
-	// onHide(){
-
-	// 	WebIM.conn.close();
-	// 	WebIM.conn.stopHeartBeat();
-	// },
-
-	// onUnload(){
-	// 	WebIM.conn.close();
-	// 	WebIM.conn.stopHeartBeat();
-	// 	wx.redirectTo({
-	// 		url: "../login/login?myName=" + myName
-	// 	});
-	// },
-
 	onLoginSuccess: function(myName){
 		wx.hideLoading()
 
-    // 登录成功跳转到聊天内容界面
+    // 登录成功跳转到main内容界面
 		wx.redirectTo({
-			url: "../chat/chat?myName=" + myName
+			url: "../main/main?myName=" + myName
 		});
 	},
 
